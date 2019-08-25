@@ -1,5 +1,5 @@
 const router = require('express').Router();
-let Post = require('../models/note.model');
+let Note = require('../models/note.model');
 
 router.route('/').get((req, res) => {
   Note.find()
