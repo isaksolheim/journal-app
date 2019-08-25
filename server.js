@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 require('dotenv').config();
 
@@ -18,8 +19,14 @@ connection.once('open', () => {
 });
 
 const notesRouter = require('./routes/notes');
+const usersRouter = require('./routes/users');
+
+app.use(passport.initialize());
+
+require('./config/passport')(passport);
 
 app.use('/', notesRouter);
+app.use('/api/users', usersRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
