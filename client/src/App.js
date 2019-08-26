@@ -8,23 +8,46 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Register from './components/Register';
 
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <Navbar />
-        <Route exact path="/" render={() => (
-          <div>
-            <NoteForm />
-            <Notes />
-          </div>
-        )} /> 
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Footer />
-      </Router>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loggedIn: false,
+      name: null,
+    };
+  }
+
+  loginHandler = (name) => {
+    this.setState({
+      loggedIn: true,
+      name 
+    }, function() {
+      console.log(this.state)
+    });
+  }
+  render() {
+    return (
+      <div className="App">
+        <Router>
+          <Navbar />
+          <Route exact path="/" render={() => (
+            <div>
+              <NoteForm />
+              <Notes />
+            </div>
+          )} /> 
+          <Route exact path="/login" render={(props) => (
+            <Login {...props}
+              loginHandler={this.loginHandler} 
+            />
+          )} />
+          <Route exact path="/register" component={Register} />
+          <Footer />
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;
