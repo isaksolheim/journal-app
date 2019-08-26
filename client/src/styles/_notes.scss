@@ -1,0 +1,41 @@
+section.notes {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  .note {
+    position: relative;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .2); 
+    min-height: 190px;
+    h2 {
+      margin-top: 0px;
+      display: block;
+      background-color: #f1f1f1;
+      padding: 10px 5px;
+    }
+
+    p {
+      padding: 10px 5px;
+    }
+
+    .actions {
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      position: absolute;
+      padding: 10px 5px;
+      bottom: 0;
+      width: 100%;
+      background-color: #f1f1f1;
+      .edit {
+        float: left;
+        cursor: pointer;
+      }
+      .delete {
+        float: right;
+        cursor: pointer;
+      }
+    }
+  }
+}
