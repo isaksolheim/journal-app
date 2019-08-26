@@ -4,6 +4,10 @@ nav {
     float: left;
     cursor: pointer;
     margin-left: 10px;
+    a {
+      text-decoration: none;
+      color: #000;
+    }
   }
 
   .left {
@@ -14,7 +18,9 @@ nav {
       display: inline-block;
       margin: 10px;
       cursor: pointer;
-      color: #642CA9;
+      a {
+        text-decoration: none;
+      }
     }
   }
 }
