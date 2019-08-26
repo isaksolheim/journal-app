@@ -10,12 +10,12 @@ router.route('/').get((req, res) => {
 router.route('/add').post((req, res) => {
   // possible to make cleaner ? ES6
   const title = req.body.title;
-  const user = req.body.user;
+  const email = req.body.email;
   const content = req.body.content;
 
   const newNote = new Note({
     title,
-    user,
+    email,
     content
   });
 
@@ -33,7 +33,7 @@ router.route('/delete/:id').delete((req, res) => {
 router.route('/update/:id').post((req,res) => {
   Note.findById(req.params.id)
     .then(note => {
-      note.user = req.body.user;
+      note.email = req.body.email;
       note.title = req.body.title;
       note.content = req.body.content;
 
