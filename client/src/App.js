@@ -39,7 +39,7 @@ class App extends React.Component {
           <Navbar data={this.state} signOut={this.signOut} />
           <Route exact path="/" render={() => (
             <div>
-              <NoteForm />
+              <NoteForm data={this.state} />
               <Notes />
             </div>
           )} /> 

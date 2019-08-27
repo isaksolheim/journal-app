@@ -1,15 +1,38 @@
 import React from 'react';
+import axios from 'axios';
 
-function NoteForm() {
-  return(
-    <form>
-      <label>Title:</label>
-      <input type="text" />
-      <label>Body:</label>
-      <textarea />
-      <button type="submit">Add Note</button>
-    </form>
-  );
+class NoteForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: this.props.data.name,
+      title: '',
+      body: ''
+    };
+  }
+
+  submitHandler = (e) => {
+    e.preventDefault();
+
+    axios.post('http://localhost:5000/add', this.state);
+  }
+
+  inputHandler = (e) => {
+    this.setState({ [e.target.id]: e.target.value });
+  }
+
+  render() {
+    return(
+      <form onSubmit={this.submitHandler}>
+        <label>Title:</label>
+        <input id="title" type="text" onChange={this.inputHandler} />
+        <label>Body:</label>
+        <textarea id="body" onChange={this.inputHandler} />
+        <button type="submit">Add Note</button>
+      </form>
+    );
+  }
 }
 
 export default NoteForm;
