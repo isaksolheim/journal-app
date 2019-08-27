@@ -8,7 +8,7 @@ class NoteForm extends React.Component {
     this.state = {
       name: this.props.data.name,
       title: '',
-      body: ''
+      content: ''
     };
   }
 
@@ -17,6 +17,8 @@ class NoteForm extends React.Component {
 
     // clearing input fields
     e.target.reset();
+
+    console.log(this.state);
 
     // adding the note
     axios.post('http://localhost:5000/add', this.state)
@@ -35,7 +37,7 @@ class NoteForm extends React.Component {
         <label>Title:</label>
         <input id="title" type="text" onChange={this.inputHandler} />
         <label>Body:</label>
-        <textarea id="body" onChange={this.inputHandler} />
+        <textarea id="content" onChange={this.inputHandler} />
         <button type="submit">Add Note</button>
       </form>
     );
