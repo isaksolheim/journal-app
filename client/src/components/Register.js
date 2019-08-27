@@ -31,6 +31,7 @@ class Register extends React.Component {
     axios.post('http://localhost:5000/api/users/register', newUser);
     
     console.log('User created!');
+    this.props.history.push('/login');
   }
 
   render() {

@@ -5,6 +5,12 @@ html, body {
   font-weight: 100;
 }
 
+@mixin desktop {
+  @media (min-width: 800px) {
+    @content;
+  }
+}
+
 @import './navbar';
 @import './noteform';
 @import './notes';

@@ -47,6 +47,8 @@ class Login extends React.Component {
           console.log(this.state.error)
         })
       );
+
+    this.props.history.push('/');
   };
 
   render() {
