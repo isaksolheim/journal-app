@@ -22,15 +22,21 @@ class App extends React.Component {
     this.setState({
       loggedIn: true,
       name 
-    }, function() {
-      console.log(this.state)
     });
   }
+
+  signOut = () => {
+    this.setState({
+      loggedIn: false,
+      name: null,
+    });
+  }
+
   render() {
     return (
       <div className="App">
         <Router>
-          <Navbar />
+          <Navbar data={this.state} signOut={this.signOut} />
           <Route exact path="/" render={() => (
             <div>
               <NoteForm />
