@@ -1,29 +1,13 @@
 import React from 'react';
 
-function Notes() {
-  const notes = [
-    {
-      title: 'first note',
-      content: 'This is my first note.'
-    },
-    {
-      title: 'not first note',
-      content: 'This is definitly not the first note'
-    },
-    {
-      title: 'not first note',
-      content: 'This is definitly not the first note'
-    },
-    {
-      title: 'not first note',
-      content: 'This is definitly not the first note'
-    }
-  ];
+function Notes(props) {
+  let notes = props.notes;
+
   return(
     <section className="notes">
       {notes.map(note => {
         return(
-          <div className="note" key="note.title">
+          <div className="note" key={note._id}>
             <h2>{note.title}</h2>
             <p>{note.content}</p>
             <div className="actions">

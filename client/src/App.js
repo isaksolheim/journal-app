@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import axios from 'axios';
+
 import './styles/main.scss';
 import Navbar from './components/Navbar';
 import NoteForm from './components/NoteForm';
@@ -15,6 +17,7 @@ class App extends React.Component {
     this.state = {
       loggedIn: false,
       name: null,
+      yourNotes: [],
     };
   }
 
@@ -23,6 +26,8 @@ class App extends React.Component {
       loggedIn: true,
       name 
     });
+
+    this.getNotes();
   }
 
   signOut = () => {
@@ -32,6 +37,25 @@ class App extends React.Component {
     });
   }
 
+  getNotes = () => {
+    let name = this.state.name;
+
+    axios.get('http://localhost:5000')
+      .then(res => {
+        let notes = res.data;
+        let yourNotes = [];
+        for (var i = 0; i < notes.length; i++) {
+          if (notes[i].name === name) {
+            yourNotes.push(notes[i]);
+          }
+        }
+
+        this.setState({ yourNotes }, function() {
+          console.log(this.state.yourNotes);
+        });
+      });
+  }
+
   render() {
     return (
       <div className="App">
@@ -39,8 +63,15 @@ class App extends React.Component {
           <Navbar data={this.state} signOut={this.signOut} />
           <Route exact path="/" render={() => (
             <div>
-              <NoteForm data={this.state} />
-              <Notes />
+              {this.state.loggedIn ? 
+                <div>
+                  <NoteForm data={this.state} getNotes={this.getNotes} />
+                  <Notes notes={this.state.yourNotes} />
+                </div> 
+                : 
+                <div>
+                  <p>Sign in to see your notes</p>
+                </div>}
             </div>
           )} /> 
           <Route exact path="/login" render={(props) => (

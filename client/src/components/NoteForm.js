@@ -15,7 +15,14 @@ class NoteForm extends React.Component {
   submitHandler = (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:5000/add', this.state);
+    // clearing input fields
+    e.target.reset();
+
+    // adding the note
+    axios.post('http://localhost:5000/add', this.state)
+      .then(res => console.log(res.data));
+
+    this.props.getNotes();
   }
 
   inputHandler = (e) => {
