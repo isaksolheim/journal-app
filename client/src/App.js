@@ -50,10 +50,15 @@ class App extends React.Component {
           }
         }
 
-        this.setState({ yourNotes }, function() {
-          console.log(this.state.yourNotes);
-        });
+        this.setState({ yourNotes });
       });
+  }
+
+  deleteNote = (id) => {
+    axios.delete(`http://localhost:5000/delete/${id}`)
+      .then(res => console.log(res.data));
+    
+    this.getNotes();
   }
 
   render() {
@@ -66,7 +71,7 @@ class App extends React.Component {
               {this.state.loggedIn ? 
                 <div>
                   <NoteForm data={this.state} getNotes={this.getNotes} />
-                  <Notes notes={this.state.yourNotes} />
+                  <Notes notes={this.state.yourNotes} deleteNote={this.deleteNote} />
                 </div> 
                 : 
                 <div>

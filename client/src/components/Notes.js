@@ -12,7 +12,7 @@ function Notes(props) {
             <p>{note.content}</p>
             <div className="actions">
               <div className="edit">Edit</div>
-              <div className="delete">Delete</div>
+              <div className="delete" onClick={(id) => {props.deleteNote(note._id)}}>Delete</div>
             </div>
           </div>
         );

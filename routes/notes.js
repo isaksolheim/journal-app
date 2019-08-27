@@ -25,7 +25,7 @@ router.route('/add').post((req, res) => {
 });
 
 router.route('/delete/:id').delete((req, res) => {
-  Note.findByAndDelete(req.params.id)
+  Note.findByIdAndDelete(req.params.id)
     .then(() => res.json('Note deleted'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
